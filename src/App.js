@@ -1,9 +1,17 @@
 import logo from './logo.svg';
 import './App.css';
+import '@fontsource/roboto';
+import { AppBar, Toolbar, IconButton, Typography, Button } from "@material-ui/core";
+import MenuIcon from "@material-ui/icons/Menu";
 
-function App() {
-  return (
+const App = () => (
     <div className="App">
+      <AppBar position="static">
+      <Toolbar>
+        <IconButton edge="start" color="inherit" aria-label="menu"><MenuIcon /></IconButton>
+        <Typography variant="h6">Home</Typography>
+      </Toolbar>
+    </AppBar>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -19,7 +27,6 @@ function App() {
         </a>
       </header>
     </div>
-  );
-}
+);
 
 export default App;
