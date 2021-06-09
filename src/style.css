@@ -1,0 +1,18 @@
+.covidBooger {
+    width: 30%;
+    height: 30%;
+    margin-top: 2%;
+}
+
+.title {
+    font-size: 50px;
+    color: #cc0000;
+}
+
+.names {
+    font-size: small;
+}
+
+.description {
+    font-size: larger;
+}

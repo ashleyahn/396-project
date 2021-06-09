@@ -4,9 +4,11 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 
 const Chart = ({data, tabValue, inputState}) => {
+    console.log(data)
+
     let options = {};
     // vaccine hesitancy
-    if (tabValue === 0) {
+    if (tabValue === 1) {
         let hesitant = parseFloat(data.estimated_hesitant)*100;
         let unsure = parseFloat(data.estimated_hesitant_or_unsure)*100;
         let strong = parseFloat(data.estimated_strongly_hesitant)*100;
@@ -43,7 +45,7 @@ const Chart = ({data, tabValue, inputState}) => {
         }
     }
     // general covid-19 stats
-    else if (tabValue === 1) {
+    else if (tabValue === 2) {
         options = {
             chart: {
                 type: 'bar'
@@ -51,9 +53,6 @@ const Chart = ({data, tabValue, inputState}) => {
             title: {
                 text: `COVID-19 Statistics for ${inputState.userInput.location.state}`
             },
-            // subtitle: {
-            //     text: 'Source: <a href="https://en.wikipedia.org/wiki/World_population">Wikipedia.org</a>'
-            // },
             xAxis: {
                 categories: [inputState.userInput.location.state],
                 title: {
@@ -63,7 +62,7 @@ const Chart = ({data, tabValue, inputState}) => {
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'Population (millions)',
+                    text: 'Number of Cases',
                     align: 'high'
                 },
                 labels: {
@@ -107,6 +106,67 @@ const Chart = ({data, tabValue, inputState}) => {
             }, {
                 name: 'Total Deaths',
                 data: [data.totalDeaths]
+            }]
+        };
+    }
+    else if (tabValue == 3) {
+        options = {
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: `Vaccination Statistics for ${inputState.userInput.location.state}`
+            },
+            xAxis: {
+                categories: [inputState.userInput.location.state],
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Number of Vaccinations',
+                    align: 'high'
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            tooltip: {
+                valueSuffix: ' millions'
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -40,
+                y: 80,
+                floating: true,
+                borderWidth: 1,
+                backgroundColor:
+                    Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF',
+                shadow: true
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: 'Vaccines Initiated',
+                data: [data.vaccinesInitiated]
+            }, {
+                name: 'Vaccines Completed',
+                data: [data.vaccinesCompleted]
+            }, {
+                name: 'Vaccines Administered',
+                data: [data.vaccinesAdministered]
             }]
         };
     }
