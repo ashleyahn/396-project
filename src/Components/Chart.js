@@ -23,12 +23,10 @@ const Chart = ({data, tabValue, inputState}) => {
             text: `Vaccine Hesitancy Rates in ${inputState.userInput.location.county}, ${inputState.userInput.location.state}`
           },
           series: [{
-            //name: 'Brands',
             colorByPoint: true,
             data: [{
               name: 'Estimated Not Hesitant',
-            //   y: 100 - hesitant - unsure - strong,
-                y: 100,
+                y: 100 - hesitant - unsure - strong,
               selected: true,
               sliced: true
             }, {
